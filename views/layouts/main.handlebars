@@ -8,24 +8,29 @@
     </head>
 
     <body>
-        <header>
-            <h1>Work Out Blog</h1>
-            <nav>
-                {{#if loggedIn}}
-                <a href="/profile" class="nav-link">Profile</a>
-                <button id="logout" class="nav-link">logout</button>
-                {{else}}
-                <a href="/login">login</a>
-            </nav>
-        </header>
+        <div class="wrapper">
+            <header>
+                <h1>Work Out Blog</h1>
+                <nav>
+                    {{#if loggedIn}}
+                    <a href="/profile" class="nav-link">Profile</a>
+                    <button id="logout" class="nav-link">logout</button>
+                    {{else}}
+                    <a href="/login">login</a>
+                    {{/if}}
+                </nav>
+            </header>
 
-        <main>
-            {{ body }}
-        </main>
+            <main>
+                {{ body }}
+            </main>
 
-        <footer>
-            Product of Christian Spence, Miller Dicarlo, Jake Mendez
-        </footer>
-
+            <footer>
+                Product of Christian Spence, Miller Dicarlo, Jake Mendez
+            </footer>
+        </div>
+        {{#if loggedIn}}
+        <script src="/javascript/logout.js"></script>
+        {{/if}}
     </body>
 </html>
