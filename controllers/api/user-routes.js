@@ -48,6 +48,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+
   User.create({
     username: req.body.username,
     email: req.body.email,
@@ -61,6 +62,7 @@ router.post('/', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
+
   User.findOne({
     where: {
       email: req.body.email
@@ -83,6 +85,7 @@ router.post('/login', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
+
   User.update(req.body, {
     individualHooks: true,
     where: {
