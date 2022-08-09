@@ -34,7 +34,6 @@ class Post extends Model {
 
 // create fields/columns for Post model
 Post.init(
-<<<<<<< HEAD
     {
       id: {
         type: DataTypes.INTEGER,
@@ -66,33 +65,6 @@ Post.init(
           model: 'user',
           key: 'id'
         }
-=======
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    post_url: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isURL: true
->>>>>>> 851a2457545eba865bcab01023272a0e73bdee6e
-      }
-    },
-    user_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'user',
-        key: 'id'
-      }
-    }
   },
   {
     sequelize,
