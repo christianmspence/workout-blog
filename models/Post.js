@@ -13,7 +13,6 @@ class Post extends Model {
         },
         attributes: [
           'id',
-          'post_url',
           'title',
           'created_at',
         ],
@@ -52,26 +51,20 @@ Post.init(
           len: [1]
         }
       },
-      post_url: {
-        type: DataTypes.STRING,
-        allowNull: true,
-        validate: {
-          isURL: true
-        }
-      },
       user_id: {
         type: DataTypes.INTEGER,
         references: {
           model: 'user',
           key: 'id'
         }
-  },
-  {
-    sequelize,
-    freezeTableName: true,
-    underscored: true,
-    modelName: 'post'
-  }
+      }
+    },
+    {
+      sequelize,
+      freezeTableName: true,
+      underscored: true,
+      modelName: 'post'
+    }
 );
 
 module.exports = Post;
