@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Post, User } = require('../../models');
+const withAdminAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
     console.log('======================');
@@ -46,7 +47,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.post('/', (req, res) => {
+router.post('/', withAdminAuth, (req, res) => {
     // expects {title: 'Taskmaster goes public!', post_url: 'https://taskmaster.com/press', user_id: 1}
     Post.create({
         title: req.body.title,
@@ -60,7 +61,7 @@ router.post('/', (req, res) => {
         });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', withAdminAuth, (req, res) => {
     Post.update(
         {
             title: req.body.title
@@ -84,7 +85,7 @@ router.put('/:id', (req, res) => {
         });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAdminAuth, (req, res) => {
     Post.destroy({
         where: {
             id: req.params.id
