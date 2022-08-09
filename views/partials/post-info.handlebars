@@ -1,0 +1,11 @@
+<article class="post">
+    <div class="title">
+        <a href="{{post_url}}" target="__blank">{{title}}</a>
+        <span>({{format_url post_url}})</span>
+    </div>
+    <div class="meta">
+        <p class="post-text">{{post-text}}</p>
+
+        <a href="/posts/{{id}}">{{comments.length}}  {{format_plural "comment" comments.length}}</a>
+    </div>
+</article>
