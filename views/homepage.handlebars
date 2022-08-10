@@ -1,4 +1,19 @@
-<a href="/new-post" class="new-post-btn">New post</a>
+{{#if loggedIn}}
+<button class="new-post-btn">New post</button>
+
+<form class="post-form hide">
+    <div>
+        <input type="text" name="title" class="post-title-input" placeholder="title">
+    </div>
+    <div>
+        <textarea name="post-body" placeholder="What's on your mind?"></textarea>
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+        <button id="cancel">cancel</button>
+    </div> 
+</form>
+{{/if}}
 
 <ol class="post-list">
     {{#each posts as |post|}}
@@ -7,3 +22,7 @@
     </li>
     {{/each}}
 </ol>
+
+{{#if loggedIn}}
+<script src="/javascript/add-post.js"></script>
+{{/if}}
