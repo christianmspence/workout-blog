@@ -3,7 +3,7 @@ async function loginFormHandler(e) {
     e.preventDefault()
     
     const email = document.querySelector('#email-login').value.trim()
-    const password = document.querySelector('#password-login').vale.trim()
+    const password = document.querySelector('#password-login').value.trim()
 
     if (email && password) {
         const res = await fetch('/api/users/login', {
@@ -27,10 +27,10 @@ async function signupFormHander(e) {
     
     e.preventDefault()
 
-    const username = document.querySelector('#username-signup')
+    const username = document.querySelector('#username-signup').value.trim()
     const email = document.querySelector('#email-signup').value.trim()
     const password = document.querySelector('#password-signup').value.trim()
-    const adminChecked = document.querySelector('#admin')
+    const adminChecked = document.querySelector('input[name="admin"]')
 
     if (username && password && email) {
         let admin = false
@@ -63,4 +63,4 @@ async function signupFormHander(e) {
 }
 
 document.querySelector('.signup-form').addEventListener('submit', signupFormHander)
-document.querySelector('login-form').addEventListener('submit', loginFormHandler)
+document.querySelector('.login-form').addEventListener('submit', loginFormHandler)
