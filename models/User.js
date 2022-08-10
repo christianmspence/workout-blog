@@ -37,6 +37,10 @@ User.init(
       validate: {
         len: [4]
       }
+    },
+    admin: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     }
   },
   {
