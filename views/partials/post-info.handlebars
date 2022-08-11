@@ -1,11 +1,11 @@
 <article class="post">
     <div class="title">
-        <h2 class="post-title">{{title}}</h2>
-        <h3 class="post-author">By {{user.username}}</h3>
+        <a href="/post/{{id}}"><h2 class="post-title">{{title}}</h2></a>
+        <p class="post-author">By {{user.username}}</p>
     </div>
     <div class="meta">
         <p class="post-text">{{post_text}}</p>
 
-        <a href="/posts/{{id}}">{{comments.length}}  {{format_plural "comment" comments.length}}</a>
+        <a href="/post/{{id}}">{{comments.length}}  {{format_plural "comment" comments.length}} || {{vote_count}} {{format_plural "like" vote_count}}</a>
     </div>
 </article>

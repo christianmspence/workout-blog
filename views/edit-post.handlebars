@@ -1,0 +1,17 @@
+<article>
+    <a href="/profile"> &larr; Back to profile</a>
+    <h2>Edit Post</h2>
+    <form class="edit-post-form">
+        <div>
+            <input name="post-title" type="text" value="{{post.title}}">
+        </div>
+        <div>
+            <textarea name="post-body" value="{{post.post_text}}"></textarea>
+        </div>
+        <button type="submit">Save post</button>
+        <button type="button" class="delete-post-btn">Delete post</button>
+    </form>
+</article>
+
+<script src="/javascript/edit-post.js"></script>
+<script src="/javascript/delete-post.js"></script>

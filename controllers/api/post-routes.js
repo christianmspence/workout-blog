@@ -1,11 +1,14 @@
 const router = require('express').Router();
-const { Post, User } = require('../../models');
+const sequelize = require('sequelize');
+const { Post, User, Vote, Comment } = require('../../models');
 const withAdminAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
     console.log('======================');
     Post.findAll({
-        attributes: ['id', 'post_text', 'title', 'created_at'],
+        attributes: ['id', 'post_text', 'title', 'created_at',
+        [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+        ],
         order: [['created_at', 'DESC']], 
         include: [
             {
@@ -26,7 +29,9 @@ router.get('/:id', (req, res) => {
         where: {
             id: req.params.id
         },
-        attributes: ['id', 'post_text', 'title', 'created_at'],
+        attributes: ['id', 'post_text', 'title', 'created_at',
+        [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+        ],
         include: [
             {
                 model: User,
@@ -47,12 +52,12 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.post('/', withAdminAuth, (req, res) => {
+router.post('/', (req, res) => {
     // expects {title: 'Taskmaster goes public!', post_url: 'https://taskmaster.com/press', user_id: 1}
     Post.create({
         title: req.body.title,
         post_text: req.body.post_text,
-        user_id: req.body.user_id
+        user_id: req.session.user_id
     })
         .then(dbPostData => res.json(dbPostData))
         .catch(err => {
@@ -61,7 +66,18 @@ router.post('/', withAdminAuth, (req, res) => {
         });
 });
 
-router.put('/:id', withAdminAuth, (req, res) => {
+router.put('/upvote', (req, res) => {
+    if (req.session) {
+        Post.upvote({ ...req.body, user_id: req.session.user_id}, {Vote, Comment, User})
+        .then(updatedPostData => res.json(updatedPostData))
+        .catch(err => {
+            console.log(err)
+            res.status(400).json(err)
+        })
+    }
+})
+
+router.put('/:id', (req, res) => {
     Post.update(
         {
             title: req.body.title,
@@ -86,7 +102,7 @@ router.put('/:id', withAdminAuth, (req, res) => {
         });
 });
 
-router.delete('/:id', withAdminAuth, (req, res) => {
+router.delete('/:id', (req, res) => {
     Post.destroy({
         where: {
             id: req.params.id

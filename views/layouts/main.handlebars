@@ -9,84 +9,22 @@
     </head>
 
     <body>
-        <div class="wrapper bg-secondary bg-opacity-25">
-            <header class="wrapper d-flex justify-content-around align-items-center bg-danger bg-opacity-50 text-white" style="height: 100px;">
-                <div>
-                    <h1>Fitter</h1>
-                </div>
-                <div>
-                    <!-- Empty space to evenly disperse -->
-                </div>
-                <div class="topnav">
-                        <a class="active" href="#search">Search</a>
-                        <input type="text" placeholder="Search..">
-                </div>
-                <div>
-                    <nav>
-                        {{#if loggedIn}}
-                        <a href="/profile" class="nav-link">Profile</a>
-                        <button id="logout" class="nav-link">logout</button>
-                        {{else}}
-                        <a href="/login">login/signup</a>
-                        {{/if}}
-                    </nav>
-                </div>
+        <div class="wrapper">
+            <header>
+                <a href="/"><h1>Fitter</h1></a>
+                <nav>
+                    {{#if loggedIn}}
+                    <p class="welcome-p">Welcome back, {{req.session.username}}</p>
+                    <a href="/profile" class="nav-link">Profile</a>
+                    <button id="logout" class="nav-link">logout</button>
+                    {{else}}
+                    <a href="/login">login/signup</a>
+                    {{/if}}
+                </nav>
             </header>
 
             <main class="container justify-content-around">
                 {{ body }}
-                <div class="card-deck d-flex flex-row flex-wrap justify-content-evenly row align-items-center">
-                    
-                    <div class="card col-4 justify-content">
-                        <div class="card-body bg-opacity-50">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            <p class="card-text"><small class="text-muted">comments</small></p>
-                        </div>
-
-                    </div>
-                    <div class="card col-4">
-                        <img class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            <p class="card-text bg-danger bg-opacity-25"><small class="text-muted">comments</small></p>
-                        </div>
-                    </div>
-                    <div class="card col-4">
-                        <img class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            <p class="card-text bg-danger bg-opacity-25"><small class="text-muted">comments</small></p>
-                        </div>
-                    </div>
-
-                    <div class="card col-4">
-                        <img class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            <p class="card-text"><small class="text-muted">comments</small></p>
-                        </div>
-                    </div>
-                    <div class="card col-4">
-                        <img class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            <p class="card-text"><small class="text-muted">comments</small></p>
-                        </div>
-                    </div>
-                    <div class="card col-4">
-                        <img class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            <p class="card-text"><small class="text-muted">comments</small></p>
-                        </div>
-                    </div>
-                </div>
             </main>
 
             <footer class="wrapper bg-danger text-white bg-opacity-25 d-flex align-items-center" style="height: 50px;">
