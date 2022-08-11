@@ -1,0 +1,17 @@
+<section>
+    {{> new-post post}}
+</section>
+
+{{#if posts.length}}
+<section>
+    <h2>Your posts</h2>
+    <ol>
+        {{#each posts as |post|}}
+        <li>
+            {{> post-info post}}
+            <a href="/profile/edit/{{post.id}}" class="edit-link">Edit post</a>
+        </li>
+        {{/each}}
+    </ol>
+</section>
+{{/if}}

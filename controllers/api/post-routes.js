@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('sequelize');
-const { Post, User } = require('../../models');
+const { Post, User, Vote, Comment } = require('../../models');
 const withAdminAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
@@ -52,7 +52,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.post('/', withAdminAuth, (req, res) => {
+router.post('/', (req, res) => {
     // expects {title: 'Taskmaster goes public!', post_url: 'https://taskmaster.com/press', user_id: 1}
     Post.create({
         title: req.body.title,
@@ -66,7 +66,18 @@ router.post('/', withAdminAuth, (req, res) => {
         });
 });
 
-router.put('/:id', withAdminAuth, (req, res) => {
+router.put('/upvote', (req, res) => {
+    if (req.session) {
+        Post.upvote({ ...req.body, user_id: req.session.user_id}, {Vote, Comment, User})
+        .then(updatedPostData => res.json(updatedPostData))
+        .catch(err => {
+            console.log(err)
+            res.status(400).json(err)
+        })
+    }
+})
+
+router.put('/:id', (req, res) => {
     Post.update(
         {
             title: req.body.title,
@@ -91,7 +102,7 @@ router.put('/:id', withAdminAuth, (req, res) => {
         });
 });
 
-router.delete('/:id', withAdminAuth, (req, res) => {
+router.delete('/:id', (req, res) => {
     Post.destroy({
         where: {
             id: req.params.id
