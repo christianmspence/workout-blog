@@ -1,11 +1,11 @@
-<article class="card col-4 justify-content">
-    <div class="card-body bg-opacity-50">
-        <a href="/post/{{id}}"><h5 class="post-title">{{title}}</h5></a>
+<article class="card">
+    <div class="card-title bg-danger bg-opacity-50 text-white bg-opacity-50">
+        <a class="post-title-link" href="/post/{{id}}"><h5 class="post-title">{{title}}</h5></a>
         <p class="post-author">By {{user.username}}</p>
     </div>
-    <div class="meta">
+    <div class="card-body">
         <p class="card-text">{{post_text}}</p>
-
+        
         <a class="card-text" href="/post/{{id}}">{{comments.length}}  {{format_plural "comment" comments.length}} || {{vote_count}} {{format_plural "like" vote_count}}</a>
     </div>
 </article>

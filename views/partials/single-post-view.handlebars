@@ -1,11 +1,11 @@
 <article class="single-post">
     <div>
-        <a href="/post/{{id}}"><h5 class="post-title">{{title}}</h5></a>
+        <h5 class="post-title">{{title}}</h5>
         <p class="post-author">By {{user.username}}</p>
     </div>
     <div class="meta">
         <p class="card-text">{{post_text}}</p>
 
-        <a class="card-text" href="/post/{{id}}">{{comments.length}}  {{format_plural "comment" comments.length}} || {{vote_count}} {{format_plural "like" vote_count}}</a>
+        <p class="card-text" href="/post/{{id}}">{{comments.length}}  {{format_plural "comment" comments.length}} || {{vote_count}} {{format_plural "like" vote_count}}</p>
     </div>
 </article>

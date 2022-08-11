@@ -1,17 +1,32 @@
 <section>
-    {{> new-post post}}
+    <div class="new-post-section">
+        {{> new-post post}}
+    </div>
+    
 </section>
 
 {{#if posts.length}}
-<section>
-    <h2>Your posts</h2>
-    <ol>
+<section class="wrapper">
+    <h2 class="profile-title">Your posts</h2>
+    <div class="card-deck-profile">
         {{#each posts as |post|}}
-        <li>
-            {{> post-info post}}
-            <a href="/profile/edit/{{post.id}}" class="edit-link">Edit post</a>
-        </li>
+            <article class="card">
+                <div class="card-title bg-danger bg-opacity-50 text-white bg-opacity-50">
+                    <a class="post-title-link" href="/post/{{id}}"><h5 class="post-title">{{title}}</h5></a>
+                    <p class="post-author">By {{user.username}}</p>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{post_text}}</p>
+                </div>    
+                <div class="card-links">
+                    <div>
+                        <a class="card-text" href="/post/{{id}}">{{comments.length}}  {{format_plural "comment" comments.length}} || {{vote_count}} {{format_plural "like" vote_count}}</a>
+                    </div>
+                    <a href="/profile/edit/{{post.id}}" class="edit-link">Edit post</a>
+                </div>
+                
+            </article>
         {{/each}}
-    </ol>
+    </div>
 </section>
 {{/if}}

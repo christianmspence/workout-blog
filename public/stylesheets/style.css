@@ -6,6 +6,7 @@ input, textarea {
     margin-top: 1em;
     padding: 0.5em 1.5em;
     text-align: center;
+    border-radius: 1em;
 }
 
 /* Header */
@@ -59,4 +60,74 @@ footer {
     left: 0;
     right: 0;
     bottom: 0;
+}
+
+/* Post Section */
+
+.card-deck {
+    max-width: 1200px;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-deck-profile {
+    max-width: 1200px;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card {
+    width: 15em;
+    height: 20em;
+    position: relative;
+}
+
+.card-title {
+    padding: 1em;
+    text-align: center;
+}
+
+.post-title-link {
+    color: white;
+}
+
+.single-post {
+    margin-top: 2em;
+}
+
+.post-author {
+    color: rgb(147, 147, 147)
+}
+
+/* Profile */
+
+.profile-title {
+    text-align: center;
+}
+
+/* Comments */
+
+.comment-form {
+    margin-top: 2em;
+}
+
+.comment {
+    margin-top: 1em;
+    background-color: rgb(187, 187, 187);
+    padding: 0.5em 1.5em;
 }
