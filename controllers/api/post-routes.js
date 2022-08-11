@@ -1,11 +1,14 @@
 const router = require('express').Router();
+const sequelize = require('sequelize');
 const { Post, User } = require('../../models');
 const withAdminAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
     console.log('======================');
     Post.findAll({
-        attributes: ['id', 'post_text', 'title', 'created_at'],
+        attributes: ['id', 'post_text', 'title', 'created_at',
+        [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+        ],
         order: [['created_at', 'DESC']], 
         include: [
             {
@@ -26,7 +29,9 @@ router.get('/:id', (req, res) => {
         where: {
             id: req.params.id
         },
-        attributes: ['id', 'post_text', 'title', 'created_at'],
+        attributes: ['id', 'post_text', 'title', 'created_at',
+        [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+        ],
         include: [
             {
                 model: User,
@@ -52,7 +57,7 @@ router.post('/', withAdminAuth, (req, res) => {
     Post.create({
         title: req.body.title,
         post_text: req.body.post_text,
-        user_id: req.body.user_id
+        user_id: req.session.user_id
     })
         .then(dbPostData => res.json(dbPostData))
         .catch(err => {

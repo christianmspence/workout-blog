@@ -10,9 +10,10 @@
     <body>
         <div class="wrapper">
             <header>
-                <h1>Fitter</h1>
+                <a href="/"><h1>Fitter</h1></a>
                 <nav>
                     {{#if loggedIn}}
+                    <p class="welcome-p">Welcome back, {{req.session.username}}</p>
                     <a href="/profile" class="nav-link">Profile</a>
                     <button id="logout" class="nav-link">logout</button>
                     {{else}}
