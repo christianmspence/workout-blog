@@ -1,20 +1,23 @@
-{{> post-info post}}
+<div class="container">
+    {{> single-post-view post}}
 
-{{#if loggedIn}}
-<form class="comment-form">
-    <div>
-        <textarea name="comment-body" placeholder="Type comment here!"></textarea>
-    </div>
-    
-    <div>
-        <button type="submit">add comment</button>
-        <button type="button" class="upvote-btn">upvote</button>
-    </div>
-</form>
+    {{#if loggedIn}}
+    <form class="comment-form">
+        <div>
+            <textarea name="comment-body" placeholder="Type comment here!"></textarea>
+        </div>
+        
+        <div>
+            <button type="submit">add comment</button>
+            <button type="button" class="upvote-btn">upvote</button>
+        </div>
+    </form>
 
-{{/if}}
+    {{/if}}
 
-{{> comments post.comments}}
+    {{> comments post.comments}}
+</div>
+
 
 {{#if loggedIn}}
 <script src="/javascript/comment.js"></script>

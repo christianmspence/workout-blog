@@ -1,11 +1,12 @@
 {{#if loggedIn}}
+<div class="new-post-section">
     {{> new-post post}}
+</div>
+
 {{/if}}
 
-<ol class="post-list">
+<div class="card-deck d-flex flex-wrap justify-content-evenly row align-items-center">
     {{#each posts as |post|}}
-    <li>
         {{> post-info post }}
-    </li>
     {{/each}}
-</ol>
+<div>

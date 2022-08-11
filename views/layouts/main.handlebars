@@ -10,24 +10,23 @@
 
     <body>
         <div class="wrapper">
-            <header>
-                <a href="/"><h1>Fitter</h1></a>
+            <header class="wrapper d-flex justify-content-around align-items-center bg-danger bg-opacity-50 text-white" style="height: 100px;">
+                <a href="/" class="page-title"><h1>Fitter</h1></a>
                 <nav>
                     {{#if loggedIn}}
-                    <p class="welcome-p">Welcome back, {{req.session.username}}</p>
                     <a href="/profile" class="nav-link">Profile</a>
                     <button id="logout" class="nav-link">logout</button>
                     {{else}}
-                    <a href="/login">login/signup</a>
+                    <a href="/login" class="nav-link">login/signup</a>
                     {{/if}}
                 </nav>
             </header>
 
             <main class="container justify-content-around">
-                {{ body }}
+                {{{ body }}}
             </main>
 
-            <footer class="wrapper bg-danger text-white bg-opacity-25 d-flex align-items-center" style="height: 50px;">
+            <footer class="wrapper bg-danger text-white bg-opacity-50 d-flex align-items-center" style="height: 50px;">
                 Product of Christian Spence, Miller Dicarlo, Jake Mendez
             </footer>
         </div>
