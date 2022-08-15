@@ -1,8 +1,8 @@
 const router = require('express').Router();
+const { default: axios } = require('axios');
 const e = require('express');
 const { User, Post, Comment } = require('../../models');
 
-// get all users
 router.get('/', (req, res) => {
   User.findAll({
     attributes: { exclude: ['password'] }
@@ -94,7 +94,7 @@ router.post('/login', (req, res) => {
       req.session.username = dbUserData.username
       req.session.admin = dbUserData.admin
       req.session.loggedIn = true
-      res.json({ user: dbUserData, message: 'You are now logged in!'})
+      res.json({ user: dbUserData, message: 'You are now logged in!' })
     })
   });
 });
@@ -104,7 +104,7 @@ router.post('/logout', (req, res) => {
     req.session.destroy(() => {
       res.status(204).end()
     })
-  }else {
+  } else {
     res.status(404).end()
   }
 })
