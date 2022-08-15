@@ -1,6 +1,7 @@
 const newPostBtn = document.querySelector('.new-post-btn')
 const newPostForm = document.querySelector('.post-form')
 const hidePostBtn = document.querySelector('#cancel')
+const headers = {"Content-Type": "text/json"};
 
 newPostBtn.addEventListener('click', () => {
     newPostForm.classList.remove('hide')
@@ -12,28 +13,38 @@ hidePostBtn.addEventListener('click', () => {
     newPostBtn.classList.remove('hide')
 })
 
-async function newFormHandler(e) {
-    e.preventDefault()
+// async function newFormHandler(e) {
+//     e.preventDefault()
 
-    const title = document.querySelector('input[name="title"]').value
-    const post_text = document.querySelector('textarea[name="post-body"]').value
+//     const title = document.querySelector('input[name="title"]').value
+//     const post_text = document.querySelector('textarea[name="post-body"]').value
 
-    const res = await fetch('/api/posts', {
-        method: 'post',
-        body: JSON.stringify({
-            title,
-            post_text
-        }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
+//     const res = await fetch('/api/posts', {
+//         method: 'post',
+//         body: JSON.stringify({
+//             title,
+//             post_text
+//         }),
+//         headers: {
+//             'Content-Type': 'application/json'
+//         }
+//     })
 
-    if (res.ok) {
-        document.location.reload()
-    }else {
-        alert(res.statusText)
-    }
-}
+//     if (res.ok) {
+//         document.location.reload()
+//     }else {
+//         alert(res.statusText)
+//     }
+// }
+
+function newFormHandler() {
+    axios
+      .post('/api/posts', {
+        title: 'New Todo',
+        completed: false
+      })
+      .then(res => showOutput(res))
+      .catch(err => console.error(err));
+  }
 
 newPostForm.addEventListener('submit', newFormHandler)

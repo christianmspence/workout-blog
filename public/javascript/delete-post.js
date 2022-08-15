@@ -1,27 +1,10 @@
-// async function deleteFormHandler(e) {
-//     e.preventDefault()
-
-//     const id = window.location.toString().split('/')[window.location.toString().split('/').length - 1]
-
-//     const res = await fetch(`/api/posts/${id}`, {
-//         method: 'delete'
-//     })
-
-//     if (res.ok) {
-//         document.location.replace('/profile')
-//     }else {
-//         alert(res.statusText)
-//     }
-// }
-const deleteComment = async () => {
-    try {
-        const resp = await axios.delete('/api/posts/${id}')
-        console.log(resp.data);
-    } catch (err) {
-        // Handle Error Here
-        console.error(err);
-    }
-};
+const id = window.location.toString().split('/')[window.location.toString().split('/').length - 1]
+function deleteComment() {
+    axios
+        .delete(`/api/posts/${id}`)
+        .then(res => document.location.replace('/profile')(res))
+        .catch(err => console.error(err));
+}
 
 
 
