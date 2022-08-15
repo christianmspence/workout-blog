@@ -1,6 +1,7 @@
 const newPostBtn = document.querySelector('.new-post-btn')
 const newPostForm = document.querySelector('.post-form')
 const hidePostBtn = document.querySelector('#cancel')
+const headers = { "Content-Type": "text/json" };
 
 newPostBtn.addEventListener('click', () => {
     newPostForm.classList.remove('hide')
@@ -31,9 +32,8 @@ async function newFormHandler(e) {
 
     if (res.ok) {
         document.location.reload()
-    }else {
+    } else {
         alert(res.statusText)
     }
 }
-
 newPostForm.addEventListener('submit', newFormHandler)
